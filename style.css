@@ -81,6 +81,45 @@ body {
 }
 
 /* ==========================================================
+   FLEXBOX: chip-style row for skills list
+   flex-row uses Flexbox to lay child <li> items out in a row
+   instead of a stacked bullet list, and wraps them on narrow
+   screens so nothing overflows.
+   ========================================================== */
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+}
+
+.chip {
+  background-color: #e2e8f0;
+  color: #1f2937;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+}
+
+/* ==========================================================
+   CSS GRID: 12-column responsive grid wrapper
+   Mobile-first: on small screens (default) everything stacks
+   in a single column. Media queries below switch to a 12-column
+   grid on tablet/desktop, and grid-col-6 spans half the grid.
+   ========================================================== */
+.grid-wrapper {
+  display: grid;
+  grid-template-columns: 1fr; /* 1 column by default (mobile) */
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.grid-col-6 {
+  margin-bottom: 0; /* the wrapper's gap handles spacing instead */
+}
+
+/* ==========================================================
    SKILLS TABLE
    ========================================================== */
 .skills-table {
@@ -192,4 +231,42 @@ body {
 
 .footer-text {
   font-size: 0.9rem;
+}
+
+/* ==========================================================
+   MEDIA QUERIES (mobile-first: base styles above = mobile)
+   12-column grid system: tablet gets a 2-column layout,
+   desktop keeps the same 2-column split but with more
+   breathing room. grid-col-6 = spans 6 of 12 columns
+   (half width) once the grid actually has 12 columns.
+   ========================================================== */
+
+/* TABLET: 768px and up */
+@media (min-width: 768px) {
+  .grid-wrapper {
+    grid-template-columns: repeat(12, 1fr); /* 12-column grid turns on */
+  }
+
+  .grid-col-6 {
+    grid-column: span 6; /* each section takes half the 12 columns */
+  }
+
+  body {
+    padding: 30px;
+  }
+}
+
+/* DESKTOP: 1024px and up */
+@media (min-width: 1024px) {
+  .grid-wrapper {
+    gap: 30px; /* more breathing room between columns on desktop */
+  }
+
+  body {
+    max-width: 960px;
+  }
+
+  .main-heading {
+    font-size: 2.6rem;
+  }
 }

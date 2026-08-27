@@ -38,9 +38,9 @@
 <!-- This is the programming languages section of the CV -->
 <section class="skills-section">
 	<h2 class="section-heading">Programming Languages</h2>
-	<ul class="skills-list">
-		<li class="list-item">HTML</li>
-		<li class="list-item">C Programming</li>
+	<ul class="skills-list flex-row">
+		<li class="list-item chip">HTML</li>
+		<li class="list-item chip">C Programming</li>
 	</ul>
 
 	<!-- Skills table -->
@@ -72,23 +72,29 @@
 	</table>
 </section>
 
-<!-- This is the projects section of the CV -->
-<section class="projects-section">
-	<h2 class="section-heading">Projects</h2>
-	<ul class="projects-list">
-		<li class="list-item">Student Task Management System</li>
-	</ul>
-</section>
+<!-- Grid layout: Projects and Activities sit side-by-side on wider screens
+     using a 12-column CSS Grid, and stack on mobile (mobile-first). -->
+<div class="grid-wrapper">
 
-<!-- This is the activities section of the CV -->
-<section class="activities-section">
-	<h2 class="section-heading">Activities</h2>
-	<ul class="activities-list">
-		<li class="list-item">Faculty Orientation Camp</li>
-		<li class="list-item">Science Faculty Activities</li>
-		<li class="list-item">University Group Projects</li>
-	</ul>
-</section>
+	<!-- This is the projects section of the CV -->
+	<section class="projects-section grid-col-6">
+		<h2 class="section-heading">Projects</h2>
+		<ul class="projects-list">
+			<li class="list-item">Student Task Management System</li>
+		</ul>
+	</section>
+
+	<!-- This is the activities section of the CV -->
+	<section class="activities-section grid-col-6">
+		<h2 class="section-heading">Activities</h2>
+		<ul class="activities-list">
+			<li class="list-item">Faculty Orientation Camp</li>
+			<li class="list-item">Science Faculty Activities</li>
+			<li class="list-item">University Group Projects</li>
+		</ul>
+	</section>
+
+</div>
 
 <!-- Media section: video and audio -->
 <section class="media-section">

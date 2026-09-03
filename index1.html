@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>Alert Confirm Prompt Example</title>
+    <script src="GuessingNumberGgame.js"></script>
+</head>
+<body>
+
+    <h2>ตัวอย่าง Alert, Confirm, Prompt</h2>
+
+    <button onclick="showAlert()">Alert</button>
+    <button onclick="showConfirm()">Confirm</button>
+    <button onclick="showPrompt()">Prompt</button>
+
+    <p id="result"></p>
+
+    <script>
+        // 1. Alert - แสดงข้อความแจ้งเตือน
+        function showAlert() {
+            alert("นี่คือ Alert Box!");
+        }
+
+        // 2. Confirm - แสดงกล่องยืนยัน (OK / Cancel)
+        function showConfirm() {
+            let confirmResult = confirm("คุณต้องการดำเนินการต่อหรือไม่?");
+            if (confirmResult) {
+                document.getElementById("result").innerText = "คุณกดปุ่ม OK";
+            } else {
+                document.getElementById("result").innerText = "คุณกดปุ่ม Cancel";
+            }
+        }
+
+        // 3. Prompt - แสดงกล่องรับข้อมูลจากผู้ใช้
+        function showPrompt() {
+            let name = prompt("กรุณากรอกชื่อของคุณ:", "");
+            if (name !== null && name !== "") {
+                document.getElementById("result").innerText = "สวัสดีคุณ " + name;
+            } else {
+                document.getElementById("result").innerText = "คุณไม่ได้กรอกชื่อ";
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -19,6 +19,17 @@
   padding-bottom: 12px;
 }
 
+/* ===== Nav bar ===== */
+nav ul{
+  list-style: none;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 15px;
+  padding: 0px;
+  margin: 15px 0 25px 0;
+  justify-content: center;
+}
+
 nav a {
     color: #000000;
     text-decoration: none;
@@ -27,6 +38,7 @@ nav a {
 
 nav a:hover {
     text-decoration: underline;
+    text-align: center;
 }
 
 /* ===== Languages + Programming side by side (CSS GRID) ===== */
@@ -41,9 +53,41 @@ nav a:hover {
     margin-top: 0;
 }
 
+/* ===== Table ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px;
+}
 
+th, td {
+  border: 1px solid #a2a8ae;
+  padding: 10px;
+  text-align: left;
+}
 
+th {
+  background-color: aqua;
+  color: bisque;
+}
 
+/* == project list== */
+.projects-list {
+  list-style: none;
+  padding: o;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.projects-list li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  background-color: aquamarine;
+  border-radius: 8px;
+  padding: 12px 15px;
+}
 
 
 

@@ -23,11 +23,11 @@ body {
 .main-heading {
   font-size: 2.2rem;
   text-align: center;
-  background-color: #1f2937;
+  background-color: #8da6cc;
   color: #ffffff;
   padding: 24px;
   border-radius: 6px;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
 }
 
 /* ==========================================================
@@ -36,7 +36,7 @@ body {
 .section-heading {
   font-size: 1.5rem;
   margin-bottom: 10px;
-  border-bottom: 3px solid #1f2937;
+  border-bottom: 3px solid #8da6cc;
   display: inline-block;
   padding-bottom: 4px;
 }
@@ -78,6 +78,15 @@ body {
 
 .list-item {
   padding: 4px 0;
+}
+
+#go{
+  text-decoration: none;
+  text-align: center;
+}
+
+img {
+  float: right;
 }
 
 /* ==========================================================
@@ -129,7 +138,7 @@ body {
 }
 
 .table-head {
-  background-color: #1f2937;
+  background-color: #8da6cc;
   color: #ffffff;
 }
 
@@ -206,7 +215,7 @@ body {
 .form-submit {
   margin-top: 14px;
   padding: 10px;
-  background-color: #1f2937;
+  background-color: #8da6cc;
   color: #ffffff;
   border: none;
   border-radius: 4px;
@@ -224,7 +233,7 @@ body {
 .site-footer {
   text-align: center;
   padding: 16px;
-  background-color: #1f2937;
+  background-color: #8da6cc;
   color: #cbd5e1;
   border-radius: 6px;
 }

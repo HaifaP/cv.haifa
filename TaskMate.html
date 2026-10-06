@@ -41,7 +41,7 @@
                 <p id="auth-subtitle" class="text-sm text-stone-500 dark:text-stone-400 mt-1">Your personal academic and task management assistant.</p>
             </div>
 
-            <form id="auth-form" onsubmit="handleAuth(event)" class="space-y-4">
+            <form id="auth-form" onsubmit="event.preventDefault();" class="space-y-4">
                 <div id="name-field" class="hidden">
                     <label id="lbl-name" class="block text-xs font-semibold uppercase mb-1">Full Name</label>
                     <input type="text" id="input-name" class="w-full px-4 py-3 rounded-xl border border-garden dark:border-stone-600 bg-transparent text-sm focus:outline-none focus:border-moss" placeholder="Enter your full name">
@@ -54,7 +54,7 @@
                     <label id="lbl-pass" class="block text-xs font-semibold uppercase mb-1">Password</label>
                     <input type="password" id="input-pass" required class="w-full px-4 py-3 rounded-xl border border-garden dark:border-stone-600 bg-transparent text-sm focus:outline-none focus:border-moss" placeholder="••••••••">
                 </div>
-                <button type="submit" id="auth-btn" class="w-full py-3.5 bg-midnight dark:bg-moss text-white rounded-xl font-medium transition hover:opacity-90 shadow-md">Log In</button>
+                <button type="button" onclick="handleAuth(event)" id="auth-btn" class="w-full py-3.5 bg-midnight dark:bg-moss text-white rounded-xl font-medium transition hover:opacity-90 shadow-md">Log In</button>
             </form>
 
             <div class="mt-6 flex justify-between items-center text-sm">

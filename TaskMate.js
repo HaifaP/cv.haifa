@@ -284,9 +284,14 @@ function switchTab(tabName) {
 
 function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
-    sidebar.classList.toggle('w-64');
-    sidebar.classList.toggle('w-20');
-    document.querySelectorAll('.nav-text').forEach(el => el.classList.toggle('hidden'));
+    if (window.innerWidth < 1024) {
+        sidebar.classList.toggle('translate-x-0');
+        sidebar.classList.toggle('-translate-x-full');
+    } else {
+        sidebar.classList.toggle('w-64');
+        sidebar.classList.toggle('w-20');
+        document.querySelectorAll('.nav-text').forEach(el => el.classList.toggle('hidden'));
+    }
 }
 
 function toggleDarkMode() {

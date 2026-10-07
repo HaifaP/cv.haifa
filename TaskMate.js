@@ -33,7 +33,7 @@ const translations = {
         stat_tasks: "งานทั้งหมด",
         stat_managed: "งานในระบบ Task Mate",
         stat_exams: "สอบเร็วๆ นี้",
-        stat_upcoming_exam: "การสอบกลางภาค",
+        stat_upcoming_exam: "การสอบ",
         stat_streak: "ความต่อเนื่อง",
         stat_days: "ใช้งานต่อเนื่อง 🦆",
 
@@ -46,10 +46,6 @@ const translations = {
 
         sub_title: "วิชาเรียนทั้งหมด",
         sub_add: "+ เพิ่มวิชาเรียน",
-        sub_time1: "เวลาเรียน: จันทร์ 13:10 - 16:00 (30-202)",
-        sub_time2: "เวลาเรียน: พุธ 07:30 - 08:50 (30-202)",
-        sub_time3: "เวลาเรียน: ศุกร์ 09:00 - 11:50 (30-205)",
-
         task_main_title: "จัดการงาน & จัดลำดับความสำคัญอัตโนมัติ",
         task_main_desc: "ระบบ Task Mate จะวิเคราะห์ความเร่งด่วนและจัดเรียงงานสำคัญให้อยู่บนสุดเสมอ",
         task_add_btn: "+ เพิ่มงานใหม่",
@@ -68,9 +64,6 @@ const translations = {
 
         exam_title: "ตารางสอบ (Exam Schedules)",
         exam_add: "+ เพิ่มตารางสอบ",
-        exam_type: "สอบกลางภาค",
-        exam_room: "ห้องสอบ: 30-202 | เวลา: 09:00 - 11:00",
-        exam_date_label: "วันที่สอบ",
 
         cal_title: "ปฏิทินงาน & ซิงค์กับเครื่อง (Device Calendar Sync)",
         cal_desc: "เชื่อมตารางงานและกำหนดส่งเข้ากับปฏิทินในมือถือหรือคอมพิวเตอร์ของคุณ",
@@ -88,8 +81,6 @@ const translations = {
 
         modal_title: "เพิ่มงาน & ให้ระบบ Task Mate จัดลำดับ",
         group_modal_title: "เพิ่มงานกลุ่มใหม่ (Add Group Task)",
-        group_modal_name: "ชื่องานกลุ่ม (Project Name)",
-        group_modal_members: "สมาชิกในกลุ่ม (คั่นด้วยจุลภาค)",
         modal_name: "ชื่องาน (Task Name)",
         modal_subject: "วิชาเรียน (Subject)",
         modal_date: "วันกำหนดส่ง (Deadline)",
@@ -136,7 +127,7 @@ const translations = {
         stat_tasks: "Total Tasks",
         stat_managed: "Managed in Task Mate",
         stat_exams: "Upcoming Exams",
-        stat_upcoming_exam: "Midterm exam",
+        stat_upcoming_exam: "Exam schedule",
         stat_streak: "Study Streak",
         stat_days: "Days in a row 🦆",
 
@@ -149,10 +140,6 @@ const translations = {
 
         sub_title: "All Subjects",
         sub_add: "+ Add Subject",
-        sub_time1: "Class: Mon 13:10 - 16:00 (30-202)",
-        sub_time2: "Class: Wed 07:30 - 08:50 (30-202)",
-        sub_time3: "Class: Fri 09:00 - 11:50 (30-205)",
-
         task_main_title: "Smart Task Prioritization",
         task_main_desc: "Task Mate analyzes urgency and automatically ranks your important tasks at the top.",
         task_add_btn: "+ Add New Task",
@@ -171,9 +158,6 @@ const translations = {
 
         exam_title: "Exam Schedules",
         exam_add: "+ Add Exam",
-        exam_type: "Midterm Exam",
-        exam_room: "Room: 30-202 | Time: 09:00 - 11:00",
-        exam_date_label: "Exam Date",
 
         cal_title: "Calendar & Device Calendar Sync",
         cal_desc: "Export and sync your study schedules and deadlines directly to your device calendar.",
@@ -191,8 +175,6 @@ const translations = {
 
         modal_title: "Add Task & Task Mate Prioritization",
         group_modal_title: "Add New Group Task",
-        group_modal_name: "Group Project Name",
-        group_modal_members: "Team Members (Comma separated)",
         modal_name: "Task Name",
         modal_subject: "Subject",
         modal_date: "Deadline",
@@ -210,14 +192,31 @@ const translations = {
     }
 };
 
-let tasks = [
+let tasks = JSON.parse(localStorage.getItem('taskmate_tasks')) || [
     { id: 1, name: 'Project Management Report', subject: 'IT Thinking Skills', date: '2026-10-15', importance: 'high', completed: false },
     { id: 2, name: 'Database ER Diagram Homework', subject: 'Math for IT', date: '2026-10-20', importance: 'medium', completed: false }
 ];
 
-let groupTasks = [
+let groupTasks = JSON.parse(localStorage.getItem('taskmate_groups')) || [
     { id: 101, name: 'Web Front-End Assignment Project', members: ['Alex', 'Sarah', 'John'], date: '2026-10-18', completed: false }
 ];
+
+let exams = JSON.parse(localStorage.getItem('taskmate_exams')) || [
+    { id: 1, type: 'Midterm Exam', name: 'IT Thinking Skills (IT2301)', room: 'Room: 30-202 | Time: 09:00 - 11:00', date: '2026-06-22' }
+];
+
+let subjects = JSON.parse(localStorage.getItem('taskmate_subjects')) || [
+    { id: 1, code: 'IT 2301', name: 'IT Thinking Skills', time: 'Class: Mon 13:10 - 16:00 (30-202)' },
+    { id: 2, code: 'GE 2100', name: 'AI Quran for Quality Life', time: 'Class: Wed 07:30 - 08:50 (30-202)' },
+    { id: 3, code: 'IT 2302', name: 'Math for IT', time: 'Class: Fri 09:00 - 11:50 (30-205)' }
+];
+
+function saveData() {
+    localStorage.setItem('taskmate_tasks', JSON.stringify(tasks));
+    localStorage.setItem('taskmate_groups', JSON.stringify(groupTasks));
+    localStorage.setItem('taskmate_exams', JSON.stringify(exams));
+    localStorage.setItem('taskmate_subjects', JSON.stringify(subjects));
+}
 
 function toggleAuthMode() {
     isLoginMode = !isLoginMode;
@@ -246,6 +245,8 @@ function toggleLanguage() {
 
     renderTasks();
     renderGroupTasks();
+    renderExams();
+    renderSubjects();
     renderCalendar();
     renderNotifications();
 }
@@ -253,11 +254,14 @@ function toggleLanguage() {
 function handleAuth(event) {
     event.preventDefault();
     const email = document.getElementById('input-email').value;
-    document.getElementById('footer-user-info').innerText = `Logged in as: ${email}`;
+    if(email) document.getElementById('footer-user-info').innerText = `Logged in as: ${email}`;
     document.getElementById('auth-screen').classList.add('hidden');
     document.getElementById('app-wrapper').classList.remove('hidden');
+    
     renderTasks();
     renderGroupTasks();
+    renderExams();
+    renderSubjects();
     renderCalendar();
     renderNotifications();
 }
@@ -280,58 +284,41 @@ function switchTab(tabName) {
     if(tabName === 'calendar') renderCalendar();
     if(tabName === 'dashboard' || tabName === 'assignments') renderTasks();
     if(tabName === 'grouptasks') renderGroupTasks();
+    if(tabName === 'exams') renderExams();
+    if(tabName === 'subjects') renderSubjects();
 }
 
 function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    if (window.innerWidth < 1024) {
-        sidebar.classList.toggle('translate-x-0');
-        sidebar.classList.toggle('-translate-x-full');
-    } else {
-        sidebar.classList.toggle('w-64');
-        sidebar.classList.toggle('w-20');
-        document.querySelectorAll('.nav-text').forEach(el => el.classList.toggle('hidden'));
-    }
+    document.getElementById('sidebar').classList.toggle('-translate-x-full');
 }
 
 function toggleDarkMode() {
-    const html = document.documentElement;
-    html.classList.toggle('dark');
+    document.documentElement.classList.toggle('dark');
     const icon = document.getElementById('theme-icon');
-    icon.className = html.classList.contains('dark') ? 'fa-solid fa-sun text-amber-400' : 'fa-solid fa-moon text-stone-700';
+    icon.className = document.documentElement.classList.contains('dark') ? 'fa-solid fa-sun text-amber-400' : 'fa-solid fa-moon text-stone-700';
 }
 
 function toggleNotifications() {
-    const dropdown = document.getElementById('notif-dropdown');
-    dropdown.classList.toggle('hidden');
+    document.getElementById('notif-dropdown').classList.toggle('hidden');
 }
 
-function openTaskModal() {
-    document.getElementById('task-modal').classList.remove('hidden');
-}
-
-function closeTaskModal() {
-    document.getElementById('task-modal').classList.add('hidden');
-}
-
-function openGroupModal() {
-    document.getElementById('group-modal').classList.remove('hidden');
-}
-
-function closeGroupModal() {
-    document.getElementById('group-modal').classList.add('hidden');
-}
+function openTaskModal() { document.getElementById('task-modal').classList.remove('hidden'); }
+function closeTaskModal() { document.getElementById('task-modal').classList.add('hidden'); }
+function openGroupModal() { document.getElementById('group-modal').classList.remove('hidden'); }
+function closeGroupModal() { document.getElementById('group-modal').classList.add('hidden'); }
+function openExamModal() { document.getElementById('exam-modal').classList.remove('hidden'); }
+function closeExamModal() { document.getElementById('exam-modal').classList.add('hidden'); }
+function openSubjectModal() { document.getElementById('subject-modal').classList.remove('hidden'); }
+function closeSubjectModal() { document.getElementById('subject-modal').classList.add('hidden'); }
 
 function calculatePriorityScore(task) {
     const today = new Date();
     const deadline = new Date(task.date);
     const diffDays = Math.ceil((deadline - today) / (1000 * 60 * 60 * 24));
-    
     let score = 0;
     if (diffDays <= 2) score += 100;
     else if (diffDays <= 7) score += 50;
     else score += 10;
-
     if (task.importance === 'high') score += 40;
     if (task.importance === 'medium') score += 20;
     return score;
@@ -343,12 +330,15 @@ function getSortedTasks() {
 
 function handleAddTask(event) {
     event.preventDefault();
-    const name = document.getElementById('new-task-name').value;
-    const subject = document.getElementById('new-task-subject').value;
-    const date = document.getElementById('new-task-date').value;
-    const importance = document.getElementById('new-task-importance').value;
-
-    tasks.push({ id: Date.now(), name, subject, date, importance, completed: false });
+    tasks.push({
+        id: Date.now(),
+        name: document.getElementById('new-task-name').value,
+        subject: document.getElementById('new-task-subject').value,
+        date: document.getElementById('new-task-date').value,
+        importance: document.getElementById('new-task-importance').value,
+        completed: false
+    });
+    saveData();
     closeTaskModal();
     renderTasks();
     renderNotifications();
@@ -357,36 +347,81 @@ function handleAddTask(event) {
 
 function handleAddGroupTask(event) {
     event.preventDefault();
-    const name = document.getElementById('new-group-name').value;
-    const membersStr = document.getElementById('new-group-members').value;
-    const date = document.getElementById('new-group-date').value;
-    const members = membersStr.split(',').map(m => m.trim());
-
-    groupTasks.push({ id: Date.now(), name, members, date, completed: false });
+    groupTasks.push({
+        id: Date.now(),
+        name: document.getElementById('new-group-name').value,
+        members: document.getElementById('new-group-members').value.split(',').map(m => m.trim()),
+        date: document.getElementById('new-group-date').value,
+        completed: false
+    });
+    saveData();
     closeGroupModal();
     renderGroupTasks();
     event.target.reset();
 }
 
+function handleAddExam(event) {
+    event.preventDefault();
+    exams.push({
+        id: Date.now(),
+        type: document.getElementById('new-exam-type').value,
+        name: document.getElementById('new-exam-name').value,
+        room: document.getElementById('new-exam-room').value,
+        date: document.getElementById('new-exam-date').value
+    });
+    saveData();
+    closeExamModal();
+    renderExams();
+    event.target.reset();
+}
+
+function handleAddSubject(event) {
+    event.preventDefault();
+    subjects.push({
+        id: Date.now(),
+        code: document.getElementById('new-sub-code').value,
+        name: document.getElementById('new-sub-name').value,
+        time: document.getElementById('new-sub-time').value
+    });
+    saveData();
+    closeSubjectModal();
+    renderSubjects();
+    event.target.reset();
+}
+
 function toggleTaskComplete(id) {
     const task = tasks.find(t => t.id === id);
-    if (task) { task.completed = !task.completed; renderTasks(); }
+    if (task) { task.completed = !task.completed; saveData(); renderTasks(); }
 }
 
 function toggleGroupComplete(id) {
     const task = groupTasks.find(t => t.id === id);
-    if (task) { task.completed = !task.completed; renderGroupTasks(); }
+    if (task) { task.completed = !task.completed; saveData(); renderGroupTasks(); }
 }
 
 function deleteTask(id) {
     tasks = tasks.filter(t => t.id !== id);
+    saveData();
     renderTasks();
     renderNotifications();
 }
 
 function deleteGroupTask(id) {
     groupTasks = groupTasks.filter(t => t.id !== id);
+    saveData();
     renderGroupTasks();
+}
+
+function deleteExam(id) {
+    exams = exams.filter(e => e.id !== id);
+    saveData();
+    renderExams();
+}
+
+function deleteSubject(id) {
+    subjects = subjects.filter(s => s.id !== id);
+    saveData();
+    renderSubjects();
 }
 
 function updateProgress() {
@@ -407,15 +442,7 @@ function renderNotifications() {
     if(!list) return;
     list.innerHTML = '';
     tasks.forEach(t => {
-        list.innerHTML += `
-            <div class="p-2 rounded-xl bg-ivory dark:bg-stone-700 flex justify-between items-center">
-                <div>
-                    <p class="font-semibold">${t.name}</p>
-                    <p class="text-[10px] text-stone-500">Deadline: ${t.date}</p>
-                </div>
-                <span class="px-1.5 py-0.5 rounded bg-moss/20 text-moss font-bold text-[10px]">Active</span>
-            </div>
-        `;
+        list.innerHTML += `<div class="p-2 rounded-xl bg-ivory dark:bg-stone-700 flex justify-between items-center"><div><p class="font-semibold">${t.name}</p><p class="text-[10px] text-stone-500">Deadline: ${t.date}</p></div><span class="px-1.5 py-0.5 rounded bg-moss/20 text-moss font-bold text-[10px]">Active</span></div>`;
     });
 }
 
@@ -423,15 +450,9 @@ function syncWithDeviceCalendar() {
     let icsContent = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Task Mate//Student Calendar//EN\n";
     tasks.forEach(task => {
         let cleanDate = task.date.replace(/-/g, '');
-        icsContent += "BEGIN:VEVENT\n";
-        icsContent += `SUMMARY:${task.name} (${task.subject})\n`;
-        icsContent += `DTSTART;VALUE=DATE:${cleanDate}\n`;
-        icsContent += `DTEND;VALUE=DATE:${cleanDate}\n`;
-        icsContent += `DESCRIPTION:Task Mate Assignment for ${task.subject}\n`;
-        icsContent += "END:VEVENT\n";
+        icsContent += `BEGIN:VEVENT\nSUMMARY:${task.name} (${task.subject})\nDTSTART;VALUE=DATE:${cleanDate}\nDTEND;VALUE=DATE:${cleanDate}\nEND:VEVENT\n`;
     });
     icsContent += "END:VCALENDAR";
-
     const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
     const link = document.createElement('a');
     link.href = window.URL.createObjectURL(blob);
@@ -439,7 +460,7 @@ function syncWithDeviceCalendar() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    alert(currentLang === 'th' ? 'ดาวน์โหลดไฟล์ปฏิทินสำเร็จ! เปิดไฟล์นี้เพื่อซิงค์เข้า Apple หรือ Google Calendar ได้ทันที 🦆' : 'Calendar synced successfully! Open the downloaded .ics file to add tasks to your device calendar.');
+    alert('Calendar synced successfully!');
 }
 
 function renderTasks() {
@@ -447,49 +468,21 @@ function renderTasks() {
     const tbody = document.getElementById('task-table-body');
     const dashList = document.getElementById('dashboard-priority-list');
     const statTotal = document.getElementById('stat-total-tasks');
-    const t = translations[currentLang];
-
     if(statTotal) statTotal.innerText = tasks.length;
     if(tbody) tbody.innerHTML = '';
     if(dashList) dashList.innerHTML = '';
 
     sorted.forEach((task, index) => {
         let badgeColor = 'bg-stone-100 text-stone-600';
-        let priorityText = t.p_norm;
-        if (task.importance === 'high') {
-            badgeColor = 'bg-red-100 text-red-600 font-bold';
-            priorityText = t.p_high;
-        } else if (task.importance === 'medium') {
-            badgeColor = 'bg-amber-100 text-amber-600';
-            priorityText = t.p_med;
-        }
+        let priorityText = 'Normal';
+        if (task.importance === 'high') { badgeColor = 'bg-red-100 text-red-600 font-bold'; priorityText = 'High Priority'; }
+        else if (task.importance === 'medium') { badgeColor = 'bg-amber-100 text-amber-600'; priorityText = 'Medium Priority'; }
 
         if(tbody) {
-            tbody.innerHTML += `
-                <tr class="border-b border-garden dark:border-stone-700 ${task.completed ? 'opacity-50 line-through' : ''}">
-                    <td class="p-4 text-center"><input type="checkbox" ${task.completed ? 'checked' : ''} onclick="toggleTaskComplete(${task.id})" class="w-4 h-4 rounded cursor-pointer"></td>
-                    <td class="p-4"><span class="px-2.5 py-1 rounded-full text-xs ${badgeColor}">#${index + 1} (${priorityText})</span></td>
-                    <td class="p-4 font-semibold">${task.name}</td>
-                    <td class="p-4 text-stone-500">${task.subject}</td>
-                    <td class="p-4 text-stone-600 dark:text-stone-300 font-medium">${task.date}</td>
-                    <td class="p-4 text-center"><button onclick="deleteTask(${task.id})" class="text-red-500 hover:text-red-700 text-xs"><i class="fa-solid fa-trash"></i></button></td>
-                </tr>
-            `;
+            tbody.innerHTML += `<tr class="border-b border-garden dark:border-stone-700 ${task.completed ? 'opacity-50 line-through' : ''}"><td class="p-4 text-center"><input type="checkbox" ${task.completed ? 'checked' : ''} onclick="toggleTaskComplete(${task.id})" class="w-4 h-4 rounded cursor-pointer"></td><td class="p-4"><span class="px-2.5 py-1 rounded-full text-xs ${badgeColor}">#${index + 1} (${priorityText})</span></td><td class="p-4 font-semibold">${task.name}</td><td class="p-4 text-stone-500">${task.subject}</td><td class="p-4 font-medium">${task.date}</td><td class="p-4 text-center"><button onclick="deleteTask(${task.id})" class="text-red-500 hover:text-red-700 text-xs"><i class="fa-solid fa-trash"></i></button></td></tr>`;
         }
-
         if(dashList && index < 3) {
-            dashList.innerHTML += `
-                <div class="flex items-center justify-between p-3.5 rounded-2xl bg-ivory dark:bg-stone-700 text-sm shadow-sm">
-                    <div class="flex items-center space-x-3">
-                        <span class="px-2.5 py-1 rounded-xl bg-moss/20 text-moss font-bold text-xs">#${index + 1}</span>
-                        <div>
-                            <p class="font-semibold">${task.name}</p>
-                            <p class="text-xs text-stone-500">${task.subject} • Deadline: ${task.date}</p>
-                        </div>
-                    </div>
-                    <span class="text-xs font-semibold px-2.5 py-1 rounded-xl ${badgeColor}">${priorityText}</span>
-                </div>
-            `;
+            dashList.innerHTML += `<div class="flex items-center justify-between p-3.5 rounded-2xl bg-ivory dark:bg-stone-700 text-sm shadow-sm"><div class="flex items-center space-x-3"><span class="px-2.5 py-1 rounded-xl bg-moss/20 text-moss font-bold text-xs">#${index + 1}</span><div><p class="font-semibold">${task.name}</p><p class="text-xs text-stone-500">${task.subject} • ${task.date}</p></div></div><span class="text-xs font-semibold px-2.5 py-1 rounded-xl ${badgeColor}">${priorityText}</span></div>`;
         }
     });
     updateProgress();
@@ -499,35 +492,37 @@ function renderGroupTasks() {
     const grid = document.getElementById('group-tasks-grid');
     if(!grid) return;
     grid.innerHTML = '';
-    const t = translations[currentLang];
-
     groupTasks.forEach(g => {
         let memberBadges = g.members.map(m => `<span class="px-2 py-0.5 bg-moss/20 text-moss rounded-lg text-xs font-semibold">${m}</span>`).join(' ');
-        grid.innerHTML += `
-            <div class="bg-white dark:bg-stone-800 p-6 rounded-3xl border border-garden dark:border-stone-700 shadow-sm ${g.completed ? 'opacity-50 line-through' : ''}">
-                <div class="flex justify-between items-start mb-3">
-                    <div class="flex items-center space-x-2">
-                        <input type="checkbox" ${g.completed ? 'checked' : ''} onclick="toggleGroupComplete(${g.id})" class="w-4 h-4 rounded cursor-pointer">
-                        <h3 class="font-bold text-lg">${g.name}</h3>
-                    </div>
-                    <button onclick="deleteGroupTask(${g.id})" class="text-red-500 hover:text-red-700 text-xs"><i class="fa-solid fa-trash"></i></button>
-                </div>
-                <p class="text-xs text-stone-500 mb-2"><strong>${t.group_members}</strong> ${memberBadges}</p>
-                <p class="text-xs text-stone-600 dark:text-stone-300"><strong>${t.group_deadline}</strong> ${g.date}</p>
-            </div>
-        `;
+        grid.innerHTML += `<div class="bg-white dark:bg-stone-800 p-6 rounded-3xl border border-garden dark:border-stone-700 shadow-sm ${g.completed ? 'opacity-50 line-through' : ''}"><div class="flex justify-between items-start mb-3"><div class="flex items-center space-x-2"><input type="checkbox" ${g.completed ? 'checked' : ''} onclick="toggleGroupComplete(${g.id})" class="w-4 h-4 rounded cursor-pointer"><h3 class="font-bold text-lg">${g.name}</h3></div><button onclick="deleteGroupTask(${g.id})" class="text-red-500 hover:text-red-700 text-xs"><i class="fa-solid fa-trash"></i></button></div><p class="text-xs text-stone-500 mb-2"><strong>Members:</strong> ${memberBadges}</p><p class="text-xs text-stone-600 dark:text-stone-300"><strong>Deadline:</strong> ${g.date}</p></div>`;
     });
     updateProgress();
+}
+
+function renderExams() {
+    const container = document.getElementById('exams-container');
+    if(!container) return;
+    container.innerHTML = '';
+    exams.forEach(exam => {
+        container.innerHTML += `<div class="bg-white dark:bg-stone-800 p-6 rounded-3xl border border-garden dark:border-stone-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-sm"><div><span class="text-xs font-semibold bg-red-100 text-red-600 px-3 py-1 rounded-xl">${exam.type || 'Exam'}</span><h3 class="font-bold text-xl brand-font mt-2">${exam.name}</h3><p class="text-xs text-stone-500 mt-1">${exam.room}</p></div><div class="flex items-center space-x-4"><div class="text-left md:text-right"><span class="text-2xl font-bold text-moss brand-font">${exam.date}</span><p class="text-xs text-stone-500 mt-1">Exam Date</p></div><button onclick="deleteExam(${exam.id})" class="text-red-500 hover:text-red-700 text-sm p-2"><i class="fa-solid fa-trash"></i></button></div></div>`;
+    });
+}
+
+function renderSubjects() {
+    const container = document.getElementById('subjects-container');
+    if(!container) return;
+    container.innerHTML = '';
+    subjects.forEach(sub => {
+        container.innerHTML += `<div class="bg-white dark:bg-stone-800 p-6 rounded-3xl border border-garden dark:border-stone-700 shadow-sm relative"><div class="flex justify-between items-start"><span class="text-xs font-semibold bg-moss/20 text-moss px-3 py-1.5 rounded-xl">${sub.code}</span><button onclick="deleteSubject(${sub.id})" class="text-red-500 hover:text-red-700 text-xs"><i class="fa-solid fa-trash"></i></button></div><h3 class="font-bold text-xl brand-font mt-3">${sub.name}</h3><p class="text-xs text-stone-500 mt-2">${sub.time}</p></div>`;
+    });
 }
 
 function renderCalendar() {
     const grid = document.getElementById('calendar-days-grid');
     if(!grid) return;
     grid.innerHTML = '';
-    
     const month = parseInt(document.getElementById('calendar-month').value);
     const year = parseInt(document.getElementById('calendar-year').value);
-    
     const firstDayIndex = new Date(year, month, 1).getDay();
     const totalDays = new Date(year, month + 1, 0).getDate();
 
@@ -539,27 +534,14 @@ function renderCalendar() {
         const formattedDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
         const matchedTasks = tasks.filter(t => t.date === formattedDate);
         const hasTask = matchedTasks.length > 0;
-        
         let dayStyle = 'bg-white dark:bg-stone-800 hover:bg-ivory dark:hover:bg-stone-700 border border-garden dark:border-stone-700';
-        if(hasTask) {
-            dayStyle = 'bg-moss/20 dark:bg-moss/30 border border-moss font-semibold';
-        }
+        if(hasTask) dayStyle = 'bg-moss/20 dark:bg-moss/30 border border-moss font-semibold';
 
         let taskHtml = '';
         matchedTasks.forEach(t => {
             taskHtml += `<span class="block text-[10px] bg-moss text-white px-1.5 py-0.5 rounded-md mt-1 truncate" title="${t.name}">${t.name}</span>`;
         });
 
-        grid.innerHTML += `
-            <div class="p-2.5 ${dayStyle} rounded-2xl flex flex-col justify-between min-h-[85px] transition shadow-sm cursor-pointer">
-                <div class="flex justify-between items-center">
-                    <span class="text-sm font-bold">${day}</span>
-                    ${hasTask ? '<i class="fa-solid fa-circle-dot text-xs text-moss"></i>' : ''}
-                </div>
-                <div class="space-y-0.5 mt-1 overflow-hidden">
-                    ${taskHtml}
-                </div>
-            </div>
-        `;
+        grid.innerHTML += `<div class="p-2.5 ${dayStyle} rounded-2xl flex flex-col justify-between min-h-[85px] transition shadow-sm cursor-pointer"><div class="flex justify-between items-center"><span class="text-sm font-bold">${day}</span>${hasTask ? '<i class="fa-solid fa-circle-dot text-xs text-moss"></i>' : ''}</div><div class="space-y-0.5 mt-1 overflow-hidden">${taskHtml}</div></div>`;
     }
 }

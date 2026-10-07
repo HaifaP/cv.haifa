@@ -1,16 +1,17 @@
-/* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Prompt:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
-body {
+html, body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
     font-family: 'Prompt', 'Plus Jakarta Sans', sans-serif;
-    overflow-x: hidden;
 }
 
 h1, h2, h3, .brand-font {
     font-family: 'Fredoka', 'Prompt', sans-serif;
 }
 
-/* Custom Scrollbar */
 ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
@@ -25,11 +26,20 @@ h1, h2, h3, .brand-font {
     border-radius: 4px;
 }
 
-/* Auto-Responsive Table for Mobile Screens */
-@media (max-width: 768px) {
-    table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-    }
+* {
+    transition-property: color, background-color, border-color, transform, opacity;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+}
+
+#app-wrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+main.flex-1 {
+    overflow-y: auto !important;
+    height: calc(100vh - 4rem);
 }

@@ -20,13 +20,21 @@
 
       <!--nav-->
       <nav class="navbar">
-        <ul>
-        <li><a href="#top">Top</a></li>
-        <li><a href="#introduction">Introduction</a></li>
-        <li><a href="#Palestinian Governorates">Palestinian Governorates</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="#bottom">Bottom</a></li>
-        </ul>
+
+        <button class="menu-toggle" id="menu-toggle"
+        aria-label="Open navigation menu"
+          aria-expanded="false">
+         ☰
+        </button>
+
+
+      <ul id="nav-menu">
+        <li><a href="#Top">Top</a></li>
+        <li><a href="#Introduction">Introduction</a></li>
+        <li><a href="#Palestine Governorates">Palestine Governorates</a></li>
+        <li><a href="#Contact">Contact</a></li>
+        <li><a href="#Bottom">Bottom</a></li>
+      </ul>
 
       </nav>
 
@@ -111,4 +119,27 @@
         </footer>
 
       </section>
+
+      
+<script>
+  const menuToggle = document.getElementById('menu-toggle');
+  const navMenu = document.getElementById('nav-menu');
+
+  menuToggle.addEventListener('click', function () {
+    navMenu.classList.toggle('show');
+
+    const isOpen = navMenu.classList.contains('show');
+    menuToggle.setAttribute('aria-expanded', isOpen);
+  });
+
+  const navLinks = navMenu.querySelectorAll('a');
+
+  navLinks.forEach(function (link) {
+    link.addEventListener('click', function () {
+      navMenu.classList.remove('show');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+  </body>
 </html>

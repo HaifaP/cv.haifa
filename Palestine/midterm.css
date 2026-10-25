@@ -133,3 +133,92 @@ body {
 image{
   object-fit: fill;
 }
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Nav bar */
+.navbar ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 12px;
+    margin: 15px 0 25px;
+}
+
+/* Nav bar links */
+.navbar a {
+    display: inline-block;
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+/* When mouse moves over a menu */
+.navbar a:hover {
+    background-color: #8da6cc;
+    color: white;
+    transform: translateY(-4px);
+}
+
+/* Space when scrolling to a section */
+section {
+    scroll-margin-top: 20px;
+}
+
+/* Hamburger menu button */
+.menu-toggle {
+    display: none;
+    font-size: 28px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+
+/* Keep navbar at the top while scrolling */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: white;
+}
+
+/* Mobile responsive navbar */
+@media screen and (max-width: 768px) {
+
+    .navbar {
+        position: relative;
+    }
+
+    .menu-toggle {
+        display: block;
+        margin: 10px auto;
+    }
+
+    .navbar ul {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin: 0;
+        padding: 10px;
+    }
+
+    .navbar ul.show {
+        display: flex;
+    }
+
+    .navbar a {
+        display: block;
+        padding: 10px 15px;
+    }
+}

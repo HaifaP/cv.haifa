@@ -8,7 +8,7 @@
 	<meta name="author" content="Haifa Panae">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 	<link rel="stylesheet" href="style.css"><!-- Link to the external CSS file -->
-	<script src="myCVscript.js"></script>
+	<script src="myCVscript.js" defer></script>
 </head>
 <body><!-- This is the body section of the HTML document -->
 
@@ -21,8 +21,7 @@
 	<p class="info-paragraph"><strong>Name:</strong> Haifa Panae</p>
 	<p class="info-paragraph"><strong>Major:</strong> Information Technology</p>
 	<p class="info-paragraph">
-		I am an Information Technology student interested in web development and
-		statistics for IT. This page is my personal resume website, and I update
+		I am an Information Technology student . This page is my personal resume website, and I update
 		it regularly as I learn new skills and finish new projects.
 	</p>
 </section>
@@ -103,13 +102,13 @@
 
 	<h3 class="media-subheading">Introduction Video</h3>
 	<video class="intro-video" controls width="480">
-		<source src="media/intro.mp4" type="video/mp4">
+		
 		Your browser does not support the video tag.
 	</video>
 
 	<h3 class="media-subheading">Audio Sample</h3>
 	<audio class="audio-sample" controls>
-		<source src="media/sample.mp3" type="audio/mpeg">
+		
 		Your browser does not support the audio element.
 	</audio>
 </section>
@@ -157,6 +156,15 @@
 		<button class="form-submit" type="submit">Send Message</button>
 	</form>
 </section>
+
+
+<!-- World Clock -->
+	<section id="world-clock">
+  		<h2>World Clock</h2>
+ 		 <p id="city">Loading city...</p>
+ 		 <p id="time">Loading time...</p>
+	</section>
+
 
 <footer class="site-footer">
 	<p class="footer-text">&copy; 2026 Haifa Panae. All rights reserved.</p>

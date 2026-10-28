@@ -5,7 +5,10 @@ let contactMessage = "";
 
 const contactForm = document.querySelector(".contact-form");
 
-contactForm.addEventListener("submit", function(event) {
+
+if (contactForm) {
+    contactForm.addEventListener("submit", function(event) {
+
     event.preventDefault();
 
     contactName = document.getElementById("name").value.trim();
@@ -23,6 +26,7 @@ contactForm.addEventListener("submit", function(event) {
 
     alert("Your message has been received!");
 });
+}
 let visitorCount = localStorage.getItem("visitorCount");
 
 if (visitorCount === null) {
@@ -33,7 +37,16 @@ if (visitorCount === null) {
 
 localStorage.setItem("visitorCount", visitorCount);
 
-document.getElementById("visitor-count").textContent = visitorCount;
+const visitorElement = document.getElementById("visitor-count");
+
+if (visitorElement) {
+    visitorElement.textContent = visitorCount;
+}
+
+
+const carouselImage = document.getElementById("carousel-image");
+const prevButton = document.getElementById("prev-btn");
+const nextButton = document.getElementById("next-btn");
 
 const carouselImages = [
     "haihai.png",
@@ -43,30 +56,77 @@ const carouselImages = [
 
 let currentImageIndex = 0;
 
-const carouselImage = document.getElementById("carousel-image");
-const prevButton = document.getElementById("prev-btn");
-const nextButton = document.getElementById("next-btn");
-
 function showCarouselImage() {
-    carouselImage.src = carouselImages[currentImageIndex];
+    if (carouselImage) {
+        carouselImage.src = carouselImages[currentImageIndex];
+    }
 }
 
-nextButton.addEventListener("click", function() {
-    currentImageIndex++;
+if (carouselImage && prevButton && nextButton) {
+    showCarouselImage();
 
-    if (currentImageIndex >= carouselImages.length) {
-        currentImageIndex = 0;
+    nextButton.addEventListener("click", function() {
+        currentImageIndex++;
+
+        if (currentImageIndex >= carouselImages.length) {
+            currentImageIndex = 0;
+        }
+
+        showCarouselImage();
+    });
+
+    prevButton.addEventListener("click", function() {
+        currentImageIndex--;
+
+        if (currentImageIndex < 0) {
+            currentImageIndex = carouselImages.length - 1;
+        }
+
+        showCarouselImage();
+    });
+}
+
+
+
+async function updateTime() {
+  const cityElement = document.getElementById("city");
+  const timeElement = document.getElementById("time");
+
+  if (!cityElement || !timeElement) {
+    console.error("World Clock elements not found");
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      "https://timeapi.io/api/Time/current/zone?timeZone=Asia/Bangkok"
+    );
+
+    if (!response.ok) {
+      throw new Error("Could not get time from API");
     }
 
-    showCarouselImage();
+    const data = await response.json();
+
+    cityElement.textContent = "Bangkok, Thailand";
+    const date = new Date(data.dateTime);
+
+timeElement.textContent = date.toLocaleString("en-GB", {
+  day: "2-digit",
+  month: "short",
+  year: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+  hour12: false,
+  timeZone: "Asia/Bangkok"
 });
+  } catch (error) {
+    cityElement.textContent = "Bangkok, Thailand";
+    timeElement.textContent = "Unable to load time";
+    console.error("Clock error:", error);
+  }
+}
 
-prevButton.addEventListener("click", function() {
-    currentImageIndex--;
-
-    if (currentImageIndex < 0) {
-        currentImageIndex = carouselImages.length - 1;
-    }
-
-    showCarouselImage();
-});
+updateTime();
+setInterval(updateTime, 60000);

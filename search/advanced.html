@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Advanced Search</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ลิงก์มุมขวาบนเพื่อย้อนกลับไปหน้าค้นหาหลัก -->
+    <div class="nav-bar">
+        <a href="index.html">Google Search</a>
+    </div>
+
+    <div class="adv-container">
+        <div class="adv-header">Advanced Search</div>
+        <div class="adv-section-title">Find pages with...</div>
+
+        <!-- ฟอร์มส่งพารามิเตอร์ 4 ตัวของ Google Advanced Search -->
+        <form action="https://www.google.com/search" method="get">
+            <!-- 1. all these words (as_q) -->
+            <div class="adv-row">
+                <label class="adv-label" for="all">all these words:</label>
+                <input type="text" id="all" name="as_q" class="adv-input">
+            </div>
+
+            <!-- 2. this exact word or phrase (as_epq) -->
+            <div class="adv-row">
+                <label class="adv-label" for="exact">this exact word or phrase:</label>
+                <input type="text" id="exact" name="as_epq" class="adv-input">
+            </div>
+
+            <!-- 3. any of these words (as_oq) -->
+            <div class="adv-row">
+                <label class="adv-label" for="any">any of these words:</label>
+                <input type="text" id="any" name="as_oq" class="adv-input">
+            </div>
+
+            <!-- 4. none of these words (as_eq) -->
+            <div class="adv-row">
+                <label class="adv-label" for="none">none of these words:</label>
+                <input type="text" id="none" name="as_eq" class="adv-input">
+            </div>
+
+            <!-- ปุ่ม Advanced Search สีน้ำเงิน -->
+            <input type="submit" value="Advanced Search" class="adv-btn">
+        </form>
+    </div>
+</body>
+</html>

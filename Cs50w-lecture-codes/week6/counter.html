@@ -1,0 +1,62 @@
+<html lang="en"><head>
+        <script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin=""></script>
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin=""></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <title>Counter</title>
+    <script>"use strict";
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+function App() {
+    var _React$useState = React.useState(0),
+        _React$useState2 = _slicedToArray(_React$useState, 2),
+        count = _React$useState2[0],
+        setCount = _React$useState2[1];
+
+    function updateCount() {
+        setCount(count + 1);
+    }
+
+    return React.createElement(
+        "div",
+        null,
+        React.createElement(
+            "h1",
+            null,
+            count
+        ),
+        React.createElement(
+            "button",
+            { onClick: updateCount },
+            "Count"
+        )
+    );
+}
+
+ReactDOM.render(React.createElement(App, null), document.querySelector("#app"));
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIklubGluZSBCYWJlbCBzY3JpcHQiXSwibmFtZXMiOlsiQXBwIiwiUmVhY3QiLCJ1c2VTdGF0ZSIsImNvdW50Iiwic2V0Q291bnQiLCJ1cGRhdGVDb3VudCIsIlJlYWN0RE9NIiwicmVuZGVyIiwiZG9jdW1lbnQiLCJxdWVyeVNlbGVjdG9yIl0sIm1hcHBpbmdzIjoiOzs7O0FBRVksU0FBU0EsR0FBVCxHQUFlO0FBQUEsMEJBRWVDLE1BQU1DLFFBQU4sQ0FBZSxDQUFmLENBRmY7QUFBQTtBQUFBLFFBRUpDLEtBRkk7QUFBQSxRQUVHQyxRQUZIOztBQUlYLGFBQVNDLFdBQVQsR0FBdUI7QUFDbkJELGlCQUFTRCxRQUFRLENBQWpCO0FBQ0g7O0FBRUQsV0FDSTtBQUFBO0FBQUE7QUFDSTtBQUFBO0FBQUE7QUFBS0E7QUFBTCxTQURKO0FBRUk7QUFBQTtBQUFBLGNBQVEsU0FBU0UsV0FBakI7QUFBQTtBQUFBO0FBRkosS0FESjtBQU1IOztBQUVEQyxTQUFTQyxNQUFULENBQWdCLG9CQUFDLEdBQUQsT0FBaEIsRUFBeUJDLFNBQVNDLGFBQVQsQ0FBdUIsTUFBdkIsQ0FBekIiLCJmaWxlIjoiSW5saW5lIEJhYmVsIHNjcmlwdCIsInNvdXJjZXNDb250ZW50IjpbIlxuXG4gICAgICAgICAgICBmdW5jdGlvbiBBcHAoKSB7XG5cbiAgICAgICAgICAgICAgICBjb25zdCBbY291bnQsIHNldENvdW50XSA9IFJlYWN0LnVzZVN0YXRlKDApO1xuXG4gICAgICAgICAgICAgICAgZnVuY3Rpb24gdXBkYXRlQ291bnQoKSB7XG4gICAgICAgICAgICAgICAgICAgIHNldENvdW50KGNvdW50ICsgMSk7XG4gICAgICAgICAgICAgICAgfVxuXG4gICAgICAgICAgICAgICAgcmV0dXJuIChcbiAgICAgICAgICAgICAgICAgICAgPGRpdj5cbiAgICAgICAgICAgICAgICAgICAgICAgIDxoMT57Y291bnR9PC9oMT5cbiAgICAgICAgICAgICAgICAgICAgICAgIDxidXR0b24gb25DbGljaz17dXBkYXRlQ291bnR9PkNvdW50PC9idXR0b24+XG4gICAgICAgICAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICAgICAgICk7XG4gICAgICAgICAgICB9XG5cbiAgICAgICAgICAgIFJlYWN0RE9NLnJlbmRlcig8QXBwIC8+LCBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiI2FwcFwiKSk7XG4gICAgICAgICJdfQ==</script></head>
+    <body>
+        <div id="app"><div><h1>0</h1><button>Count</button></div></div>
+
+        <script type="text/babel">
+
+            function App() {
+
+                const [count, setCount] = React.useState(0);
+
+                function updateCount() {
+                    setCount(count + 1);
+                }
+
+                return (
+                    <div>
+                        <h1>{count}</h1>
+                        <button onClick={updateCount}>Count</button>
+                    </div>
+                );
+            }
+
+            ReactDOM.render(<App />, document.querySelector("#app"));
+        </script>
+    
+</body></html>
